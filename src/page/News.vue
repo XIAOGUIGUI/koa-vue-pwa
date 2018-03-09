@@ -1,0 +1,32 @@
+
+<template>
+	<div>
+		<h1>新闻列表</h1>
+		<div v-for="(item,index) in news" :key="index">
+			<p class="newsItem">{{item.title}}</p>
+		</div>
+	</div>
+</template>
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      news: 'getNews'
+    })
+  },
+  asyncData({ store }) {
+    return store.dispatch(`getNews`)
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+.newsItem {
+  cursor: pointer;
+}
+.newsItem:hover {
+  color: #fff;
+}
+</style>
